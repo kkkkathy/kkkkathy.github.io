@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kathy&#39;s Blog">
 <meta property="og:description" content="topic：统计学习方法概论 author：刘子璐  统计学习概述 统计学习也称统计机器学习（statistical machine learning），即运用数据以及统计方法提高系统性能的机器学习。  统计学习的总目标即考虑学习什么模型以及如何学习，在提高准确性的同时提高学习效率。  主要包括监督学习、非监督学习、半监督学习、强化学习等类型  统计学习方法三要素：方法 = 模型（model）+">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-07T13:57:03.818Z">
+<meta property="og:updated_time" content="2018-12-07T13:58:49.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法-第一章">
 <meta name="twitter:description" content="topic：统计学习方法概论 author：刘子璐  统计学习概述 统计学习也称统计机器学习（statistical machine learning），即运用数据以及统计方法提高系统性能的机器学习。  统计学习的总目标即考虑学习什么模型以及如何学习，在提高准确性的同时提高学习效率。  主要包括监督学习、非监督学习、半监督学习、强化学习等类型  统计学习方法三要素：方法 = 模型（model）+">
@@ -419,10 +419,7 @@
 </ul>
 </blockquote>
 <ul>
-<li><p>对数损失函数(logarithmic loss function)or对数似然损失函数(log-likelihood loss function):<br>$$</p>
-<p>L(Y,P(Y|X))=−logP(Y|X)</p>
-<p>$$</p>
-</li>
+<li>对数损失函数(logarithmic loss function)or对数似然损失函数(log-likelihood loss function):<br>$$<br>L(Y,P(Y|X))=−logP(Y|X)<br>$$</li>
 </ul>
 <ul>
 <li>损失函数越小，模型越好。损失函数的期望函数（risk function）或称期望损失（expected loss）如下，也称为泛化误差：<br>$$<br>R_{exp}(f)=E_p[L(Y, f(X))]=\int_{x*y}L(y, f(x))P(x, y)dxdy<br>$$</li>
@@ -432,7 +429,6 @@
 <blockquote>
 <p><strong>根据大数定律，当样本容量N趋于无穷。经验风险会趋于期望风险。而实际中样本数目有限，所以需要使用两种基本策略：经验风险最小化和结构风险最小化。</strong></p>
 </blockquote>
-<p>​</p>
 </li>
 </ul>
 <h4 id="经验风险最小化"><a href="#经验风险最小化" class="headerlink" title="经验风险最小化"></a>经验风险最小化</h4><ul>
@@ -510,7 +506,7 @@
 <li>精确率：<br>$$<br>P=\frac{TP}{TP+FP}<br>$$</li>
 </ul>
 <ul>
-<li>召回率：<br>$$<br>P=\frac{TP}{TP+FN}<br>$$</li>
+<li>召回率：<br>$$<br>  P=\frac{TP}{TP+FN}<br>$$</li>
 </ul>
 <ul>
 <li>F1(精确率和召回率的调和均值)，精确率和召回率都高时，F1值也会高：<br>$$<br>  \frac{2}{F_1}=\frac{1}{P} + \frac{1}{R}<br>$$</li>

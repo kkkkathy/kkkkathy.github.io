@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kathy&#39;s Blog">
 <meta property="og:description" content="topic：决策树 author：Kathy Lau  决策树决策树模型与学习 决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。 决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-17T09:27:23.679Z">
+<meta property="og:updated_time" content="2018-12-17T09:31:28.520Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法-第五章">
 <meta name="twitter:description" content="topic：决策树 author：Kathy Lau  决策树决策树模型与学习 决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。 决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）">
@@ -441,11 +441,9 @@
 <li><p>输入：训练数据集D和特征A；</p>
 </li>
 <li><p>输出：特征A对训练数据集D的信息增益$g(D,A)$</p>
-<p>a. 计算数据集D的经验熵$H(D)$<br>$$</p>
-<p>H(D)=-\sum_{k=1}^K{\frac{|C_k|}{|D|}log_2{\frac{|C_k|}{|D|}}}</p>
-<p>$$<br>b. 计算特征A对数据集D的经验条件熵$H(D|A)$<br>$$</p>
-<p>H(D|A)=\sum_{i=1}^n\frac{|D_i|}{D}H(D_i)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\sum_{k=1}^K\frac{|D_{ik}|}{|Di|}log_2\frac{|D_{ik}|}{|D_i|}</p>
-<p>$$<br>c. 计算信息增益</p>
+<p>a. 计算数据集D的经验熵$H(D)$<br>$$<br>H(D)=-\sum_{k=1}^K{\frac{|C_k|}{|D|}log_2{\frac{|C_k|}{|D|}}}<br>$$<br>​</p>
+<p>b. 计算特征A对数据集D的经验条件熵$H(D|A)$<br>$$<br>H(D|A)=\sum_{i=1}^n\frac{|D_i|}{D}H(D_i)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\sum_{k=1}^K\frac{|D_{ik}|}{|Di|}log_2\frac{|D_{ik}|}{|D_i|}<br>$$<br>​</p>
+<p>c. 计算信息增益</p>
 </li>
 </ul>
 </li>

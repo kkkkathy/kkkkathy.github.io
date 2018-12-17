@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="读书笔记,ML,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="topic：决策树 author：Kathy Lau  决策树决策树模型与学习 决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。 决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）">
+<meta name="keywords" content="读书笔记,ML">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计学习方法-第五章">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/统计学习方法-第五章/index.html">
+<meta property="og:site_name" content="Kathy&#39;s Blog">
+<meta property="og:description" content="topic：决策树 author：Kathy Lau  决策树决策树模型与学习 决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。 决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-17T09:09:13.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="统计学习方法-第五章">
+<meta name="twitter:description" content="topic：决策树 author：Kathy Lau  决策树决策树模型与学习 决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。 决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Kathy Lau'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/10/统计学习方法-第五章/">
+
+
+
+
+
+  <title>统计学习方法-第五章 | Kathy's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Kathy's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/统计学习方法-第五章/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kathy Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kathy's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">统计学习方法-第五章</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-10T15:14:57+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/统计学习方法/" itemprop="url" rel="index">
+                    <span itemprop="name">统计学习方法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>topic：决策树</p>
+<p>author：Kathy Lau</p>
+</blockquote>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><h2 id="决策树模型与学习"><a href="#决策树模型与学习" class="headerlink" title="决策树模型与学习"></a>决策树模型与学习</h2><ul>
+<li>决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。</li>
+<li>决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）</li>
+<li>决策树学习本质是从训练数据集中归纳出一组分类规则，是一个与训练数据矛盾较小的决策树，同时具有很好的泛化能力。</li>
+<li>决策树学习用损失函数来实现目标，通常是使用正则化的极大似然函数。</li>
+</ul>
+<h3 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h3><ul>
+<li>从所有可能的决策树中选取最优决策树是NP完全问题，所以现实中决策树学习通常采用<strong>启发式方法</strong>近似求解，这样的决策树是此最优（sub-optimal）的。</li>
+</ul>
+<hr>
+<p><strong>NP(Non-deterministic Polynomial)——多项式复杂程度的非确定性问题。</strong></p>
+<ul>
+<li>在设计程序时，我们经常需要评估这个程序的时间复杂度，即衡量当问题规模变大后，程序执行所需的时间增长会有多快。<ul>
+<li>O(1)表示常数级别，即不管问题的规模变大多少倍，所耗的时间不会改变</li>
+<li>$O(N^2)$表示平方级别，即当问题规模增大至2倍时，所花费的时间则放大至4倍</li>
+<li>$O(2^n)$表示指数级别，即当问题规模倍数扩大时，所用时间会呈指数放大</li>
+</ul>
+</li>
+<li><strong>多项式时间</strong>则是指$O(1),O(logN),O(N^2)$等这类可用多项式表示的时间复杂度，通常我们认为计算机可解决的问题只限于多项式时间内。而$O(2^n),O(N!)$这类非多项式级别的问题，其复杂度往往已经到了计算机都接受不了的程度。</li>
+<li>所有非确定性多项式时间内可解的判定问题构成<strong>NP类问题</strong><ul>
+<li>NP类问题将问题分为求解和验证两个阶段，问题的求解是非确定性的，无法在多项式时间内得到答案，而问题的验证却是确定的，能够在多项式时间里确定结果。</li>
+</ul>
+</li>
+<li>NP中的一类比较特殊的问题，这类问题中每个问题的复杂度与整个类的复杂度有关联性，假如其中任意一个问题在多项式时间内可解的，则这一类问题都是多项式时间可解。这些问题被称为<strong>NP完全问题</strong>。</li>
+</ul>
+<hr>
+<hr>
+<p><strong>启发式算法</strong></p>
+<p>一个基于直观或经验构造的算法，在可接受的花费（指计算时间和空间）下给出待解决组合优化问题每一个实例的一个可行解，该可行解与最优解的偏离程度一般不能被预计。</p>
+<p>启发式算法的难点是建立符合实际问题的一系列启发式规则。</p>
+<p>启发式算法的优点在于它比盲目型的搜索法要高效，一个经过仔细设计的启发函数，往往在很快的时间内就可得到一个搜索问题的最优解，对于NP问题，亦可在多项式时间内得到一个较优解。</p>
+<hr>
+<p><strong>决策树学习过程：</strong></p>
+<ul>
+<li>构建根节点，从训练数据中选择一个最优特征，将训练数据分割成子集，使得自己在当前条件下有一个最好的分类。</li>
+<li>如果子集能基本被正确分类，构建叶节点</li>
+<li>如果还有子集不能被正确分类，就对子集选择新的最优特征，继续分割构建相应节点。</li>
+<li>直到所有训练数据子集都被基本正确分类或者没有合适的特征。</li>
+</ul>
+<p>以上学习过程很可能发生过拟合现象，因此需要对已生成的树自下而上进行剪枝，将树变得更简单，有更好的泛化能力：</p>
+<ul>
+<li>去掉过分细分的叶节点，使其回到父节点或者更高的结点，然后将对应的父节点改为新的叶节点</li>
+</ul>
+<ul>
+<li>如果特征数量很多，也可以在决策树学习开始时，对特征进行选择，即留下对训练数据有足够分类能力的特征</li>
+<li>决策树的生成对应于模型的局部最优选择；决策树的剪枝操作考虑全局最优选择</li>
+<li>决策树学习常用算法有ID3，C4.5，CART</li>
+</ul>
+<h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>特征选择的准则是信息增益（information gain）或信息增益比：信息增益表示得知特征X的信息而使得类Y的信息不确定性减少的程度。</p>
+<hr>
+<h3 id="熵"><a href="#熵" class="headerlink" title="熵"></a>熵</h3><ul>
+<li><p>表示随机变量不确定性的度量</p>
+</li>
+<li><p>若X是一个取有限个值的离散随机变量，其概率分布为：<br>$$<br>P(X=x_i)=p_i,\ \ \ \ i=1,2,…,n<br>$$</p>
+</li>
+</ul>
+<ul>
+<li><p>则随机变量X的熵定义为：<br>$$<br>H(X)=-\sum_{i=1}^np_ilog\ p_i<br>$$<br>其中定义$0log0=0$，由定义可得，熵只依赖于X的分布，与X取值无关，即X的熵可以计作$H(p)$。</p>
+</li>
+<li><p>熵越大，随机变量的不确定性就越大。从定义可验证：<br>$$<br>0\leq H(p)\leq log\ n<br>$$</p>
+</li>
+</ul>
+<h3 id="条件熵"><a href="#条件熵" class="headerlink" title="条件熵"></a>条件熵</h3><ul>
+<li>舍友随机变量$(X,Y)$，其联合概率分布为：<br>$$<br>P(X=x_i,Y=y_i)=p_{ij},\ \ \ \ i=1,2,…,n;\ \ j=1,2,…,m<br>$$</li>
+</ul>
+<ul>
+<li>条件熵$H(Y|X)$表示已知随机变量X时随机变量Y的不确定性，定义为X给定条件下Y的条件概率分布熵对X的数学期望：<br>$$<br>H(Y|X)=\sum_{i=1}^np_iH(Y|X=x_i)<br>$$<br>这里$p_i=P(X=x_i),\ \ \ i=1,2,…,n$。</li>
+</ul>
+<hr>
+<h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><ul>
+<li>特征A对训练数据集D的信息增益$g(D, A)$，定义为集合D的经验熵$H(D)$与给定特征A条件下D的经验条件熵$H(D|A)$之差：</li>
+</ul>
+<p>$$<br>g(D, A)=H(D)-H(D|A)<br>$$</p>
+<p>​    一般的，这种差值称之为互信息(mutual information)，信息增益大的特征具有更强的分类能力</p>
+<ul>
+<li><p>信息增益的算法： </p>
+<hr>
+<p>训练数据集为D，|D|表示样本总量<br>样本设有K个类$C_k$，$|C_k|$表示属于类$C_k$的样本个数</p>
+<p>特征A的取值将D划分为n个子集，$|D_i|$表示属于这个子集的样本个数</p>
+<p>子集$D_i$属于类$C_k$的样本集合计作$D_{ik}$。</p>
+<hr>
+<ul>
+<li><p>输入：训练数据集D和特征A；</p>
+</li>
+<li><p>输出：特征A对训练数据集D的信息增益$g(D,A)$</p>
+<p>a. 计算数据集D的经验熵$H(D)$<br>$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>H(D)=-\sum_{k=1}^K\frac{|C_k|}{|D|}log_2\frac{|C_k|}{|D|}
+
+
+$$
+</code></pre><p>​        b. 计算特征A对数据集D的经验条件熵$H(D|A)$<br>$$<br>H(D|A)=\sum_{i=1}^n\frac{|D_i|}{D}H(D_i)=-\sum_{i=1}^n\frac{|D_i|}{|D|}\sum_{k=1}^K\frac{|D_{ik}|}{|Di|}log_2\frac{|D_{ik}|}{|D_i|}<br>$$<br>​        c. 计算信息增益<br>$$<br>g(D,A)=H(D)-H(D|A)<br>$$</p>
+<h3 id="信息增益比（information-gain-ratio）"><a href="#信息增益比（information-gain-ratio）" class="headerlink" title="信息增益比（information gain ratio）"></a>信息增益比（information gain ratio）</h3><ul>
+<li><p>使用信息增益作为划分，存在<strong>偏向于选择取值较多的特征</strong>的问题，使用信息增益比可以进行对应的校正。</p>
+</li>
+<li><p>特征A对训练数据集D的信息增益比$g_{R}(D,A)$定义为：信息增益$g(D,A)$与训练数据D关于特征A的值的熵$H_A(D)$之比，即：<br>$$<br>g_R(D,A)=\frac{g(D,A)}{H_A(D)}<br>$$<br>其中，$H_A(D)=-\sum_{i=1}^n\frac{|D_i|}{D}log_2\frac{D_i}{D}$，n是特征A取值的个数。</p>
+</li>
+</ul>
+<h2 id="决策树的生成"><a href="#决策树的生成" class="headerlink" title="决策树的生成"></a>决策树的生成</h2><h3 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h3><p>算法核心：在决策树各个结点应用信息增益准则选择特征，递归构建决策树。</p>
+<ul>
+<li><p>输入：训练数据集D，特征集A，阈值$\varepsilon$</p>
+</li>
+<li><p>输出：决策树T</p>
+<p>a. 若D中所有实例属于同一类$C_k$，则T为单结点树，将类$C_k$作为该结点的类标记，返回T；</p>
+<p>b. 若$A=\oslash$，则T为单结点树，将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</p>
+<p>c. 否则，按<u>信息增益算法</u>计算各特征对D的信息增益，选择信息增益最大的特征$A_g$</p>
+<p>d. 如果$A_g$的信息增益小于阈值$\varepsilon$，则置T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</p>
+<p>e. 否则，对$A_g$的每一个可能值$a_i$，依$A_g=a_i$将D分割为若干个非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子结点构成树T，返回T；</p>
+<p>f. 对第i个子结点，以$D_i$为训练集，以$A-{A_g}$为特征集，递归调用步骤a到步骤e，得到子树$T_i$，返回$T_i$</p>
+</li>
+</ul>
+<p>该算法只有树的生成，容易产生过拟合。</p>
+<h3 id="C4-5生成算法"><a href="#C4-5生成算法" class="headerlink" title="C4.5生成算法"></a>C4.5生成算法</h3><p>c4.5对ID3算法做了改进，即<strong>使用了信息增益比来选择特征</strong>。</p>
+<ul>
+<li><p>输入：训练数据集D，特征集A，阈值$\varepsilon$</p>
+</li>
+<li><p>输出：决策树T</p>
+<p>a. 若D中所有实例属于同一类$C_k$，则T为单结点树，将类$C_k$作为该结点的类标记，返回T；</p>
+<p>b. 若$A=\oslash$，则T为单结点树，将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</p>
+<p>c. 否则，按<u>信息增益比算法</u>计算各特征对D的信息增益，选择信息增益比最大的特征$A_g$</p>
+<p>d. 如果$A_g$的信息增益比小于阈值$\varepsilon$，则置T为单结点树，并将D中实例数最大的类$C_k$作为该结点的类标记，返回T；</p>
+<p>e. 否则，对$A_g$的每一个可能值$a_i$，依$A_g=a_i$将D分割为若干个非空子集$D_i$，将$D_i$中实例数最大的类作为标记，构建子结点，由结点及其子结点构成树T，返回T；</p>
+<p>f. 对第i个子结点，以$D_i$为训练集，以$A-{A_g}$为特征集，递归调用步骤a到步骤e，得到子树$T_i$，返回$T_i$</p>
+</li>
+</ul>
+<h2 id="决策树的剪枝"><a href="#决策树的剪枝" class="headerlink" title="决策树的剪枝"></a>决策树的剪枝</h2><p>为了防止在决策树生成过程中出现过拟合现象，构造出过于复杂的决策树，我们考虑决策树的复杂度，对已生成的决策树进行简化——剪枝（pruning）。</p>
+<ul>
+<li><p>决策树的剪枝往往通过极小化决策树整体的损失函数或代价函数来实现。</p>
+</li>
+<li><p>设树的叶结点个数为$|T|$，t是树T的叶结点，叶结点上有$N_t$个样本点，其中k类样本点有$N_{tk}$个，$H_t(T)$为叶结点t上的经验熵，$\alpha$为参数，则决策树学习的损失函数定义如下：<br>$$<br>C_\alpha(T)=\sum_{t=1}^{|T|}N_tH_t(T)+\alpha|T|<br>$$</p>
+<p>$$<br>H_t(T)=-\sum_k\frac{N_{tk}}{N_t}log\frac{N_{tk}}{N_t}<br>$$</p>
+</li>
+</ul>
+<ul>
+<li><p>我们令右边第一项为C(T)，即：<br>$$<br>C_\alpha(T)=C(T)+\alpha|T|<br>$$<br>其中，C(T)表示模型对训练数据的预测误差，即与训练数据的拟合程度，|T|表示模型复杂度，参数$\alpha\geq0​$控制两者之间的影响。</p>
+<ul>
+<li>较大的$\alpha$促使选择较简单的模型，较小的$\alpha$促使选择较复杂的模型，$\alpha=0$意味着不考虑模型复杂度。</li>
+</ul>
+</li>
+<li><p>剪枝是当$\alpha$确定时，选择损失函数最小的模型，即子树。当$\alpha$确定时，子树越大，拟合效果越好，复杂度越高，损失函数表示了对两者的平衡。</p>
+</li>
+<li><p>通过剪枝可以减小模型的复杂度。</p>
+</li>
+</ul>
+<p><strong>树的修剪算法如下：</strong></p>
+<ul>
+<li><p>输入：生成算法的整个树T，参数$\alpha$</p>
+</li>
+<li><p>输出：修剪后的子树$T_\alpha$</p>
+<p>a. 计算每个结点的经验熵</p>
+<p>b. 递归从树的叶结点向上回缩：回缩到父节点之前与之后的整体树分别为$T_B$和$T_A$，如果$C_\alpha(T_A)\leq C_\alpha(T_B)$，则进行剪枝，将父节点变为新的叶结点</p>
+<p>c. 返回b，直到不能继续为止，得到损失函数最小的子树$T_\alpha$</p>
+</li>
+</ul>
+<h2 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h2><p>classification and regression tree，分类与回归树，是应用广泛的决策树学习方法。</p>
+<p>CART算法是在给定输入随机变量X的条件下输出随机变量Y的条件概率分布的学习方法，由以下两步组成：</p>
+<ul>
+<li>决策树生成：基于训练数据生成，决策树要尽量大</li>
+<li>决策树剪枝：根据损失函数最小选择最优子树</li>
+</ul>
+<p>决策树的生成时递归的构建二叉决策树的过程：</p>
+<ul>
+<li>对回归树用平方误差最小化准则进行特征选择</li>
+<li>对分类树使用基尼(gini)准则最小化准则进行特征选择</li>
+</ul>
+<h3 id="回归树的生成"><a href="#回归树的生成" class="headerlink" title="回归树的生成"></a>回归树的生成</h3><p>使用最小二乘回归树生成算法，具体如下：</p>
+<ul>
+<li><p>输入：训练数据集D</p>
+</li>
+<li><p>输出：回归树$f(x)$</p>
+<p><strong>在训练数据集输入空间中，递归将每个区域划分为两个子区域并决定每个子区域的输出值，构建二叉决策树。</strong></p>
+<p><strong>假设已将输入空间划分为M个单位$R_1, R_2,…,R_M$，在每个单位$R_m$上有一个固定的输出值$c_m$，最优值$\hat c_m$是$R_m$上所有实例对应输出的均值。</strong></p>
+<p>a. 我们令第j个变量的取值为s，选择最优切分变量j与切分点s，求解：</p>
+</li>
+</ul>
+<p>$$<br>min_{j,s}[min_{c1}\sum_{x_i\in R_1(j,s)}(y_i-c_i)^2+min_{c2}\sum_{x_i\in R_2(j,s)}(y_i-c_i)^2]<br>$$<br>​    遍历变量j，对固定的切分变量j扫描切分点s，找到使得式子最小的$(j,s)$对。</p>
+<p>​    b. 用选定的$(j,s)$对划分区域并决定相应的输出值：<br>$$<br>R_1(j,s)={x|x^{(j)}\leq s},\ \ \ R_2(j,s)={x|x^{(j)}&gt; s}<br>$$</p>
+<p>$$<br>\hat c_m=\frac{1}{N_m}\sum_{x_i\in R_m(j,s)}y_i,\ \ x\in R_m,\ \ m=1,2<br>$$</p>
+<p>​    c. 继续对两个子区域调用步骤a，b，直到满足停止条件。</p>
+<p>​    d. 将输入空间划分为M个区域$R_1,R_2,…,R_M$，生成决策树：<br>$$</p>
+<p>f(x)=\sum_{m=1}^M\hat c_mI(x\in R_m)</p>
+<p>$$</p>
+<h3 id="分类树的生成"><a href="#分类树的生成" class="headerlink" title="分类树的生成"></a>分类树的生成</h3><p>分类树使用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
+<h4 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h4><p>a. 在分类问题中，假设有K个类，样本点属于第K类的概率为$p_k$，则概率分布的尼基指数定义为：<br>$$<br>Gini(p)=\sum_{k=1}^Kp_k(1-p_k)=1-\sum_{k=1}^Kp_k^2<br>$$<br>b. 对于给定的样本集合D，其基尼指数为：<br>$$<br>Gini(D)=1-\sum_{k=1}^K(\frac{|C_k|}{D})^2<br>$$<br>这里$C_k$是D中属于第k类的样本子集，K是类的个数。</p>
+<p>c. 如果样本集合D根据特征A是否取某个可能值a被分割成$D_1$和$D_2$两部分：<br>$$<br>D_1={(x,y)\in D|A(x)=a},\ \ D2=D-D_!<br>$$<br>则在特征A的条件下，集合D的基尼指数定义为：<br>$$<br>Gini(D,A)=\frac{|D1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D2)<br>$$<br>$Gini(D)$表示集合D的不确定性，$Gini(D,A)$表示经$A=a$分割后集合D的不确定性。</p>
+<p>基尼指数越大，样本集合的不确定性越大。</p>
+<h4 id="CART生成算法"><a href="#CART生成算法" class="headerlink" title="CART生成算法"></a>CART生成算法</h4><ul>
+<li><p>输入：训练数据集D，停止计算的条件</p>
+</li>
+<li><p>输出：CART决策树</p>
+<p>从根节点开始，递归对每个结点进行操作，构建二叉决策树：</p>
+<p>a. 设结点训练数据集为D，计算现有特征对该数据集的基尼指数：即对每个特征A，其可能取的每个值a，根据样本点测试$A=a$为“是”或“否”将D分割为$D_1$和$D_2$，计算条件基尼指数。</p>
+<p>b.在所有特征A和所有可能的切分点a中，选择基尼指数最小的特征及其对应的切分点作为最优特征与最优切分点，从现结点生成两个子结点，将训练数据集特征分配到子结点去。</p>
+<p>c.对两个子结点递归调用a,b，直到满足停止条件</p>
+<p>d.生成CART决策树</p>
+<p><strong>算法停止计算的条件是结点中的样本个数小于预定阈值，或样本集的基尼指数小于预定阈值（样本基本属于同一类），或者没有更多特征</strong></p>
+</li>
+</ul>
+<h3 id="CART剪枝"><a href="#CART剪枝" class="headerlink" title="CART剪枝"></a>CART剪枝</h3><p>step1：剪枝，形成子树序列</p>
+<p>step2：在剪枝得到的子树序列$T_0,T_1,…,T_n$中通过交叉验证选取最优子树$T_\alpha$</p>
+<h4 id="CART剪枝算法"><a href="#CART剪枝算法" class="headerlink" title="CART剪枝算法"></a>CART剪枝算法</h4><ul>
+<li><p>输入：CART算法生成的决策树$T_0$</p>
+</li>
+<li><p>输出：最优决策树$T_\alpha$</p>
+<p>a.设$k=0,T=T_0$</p>
+<p>b.设$\alpha=+\infty$</p>
+<p>c.自下而上对各内部结点t计算$C(T_t)$，$|T_t|$以及<br>$$<br>g(t)=\frac{C(t)-C(T_t)}{|T_t|-1}<br>$$</p>
+<p>$$<br>\alpha=min(\alpha,g(t))<br>$$</p>
+</li>
+</ul>
+<p>​    这里$T_t$表示以t为根节点的子树，$C(T_t)$是对训练数据的预测误差（如基尼指数），$|T_t|$是$T_t$的叶节点个数</p>
+<p>​    d.对$g(t)=\alpha$的内部结点t进行剪枝，并对叶结点t以多数表决法决定其类，得到树T</p>
+<p>​    e.设$k=k+1,\alpha_k=\alpha,T_k=T$</p>
+<p>​    f.如果$T_k$不是由根节点及两个叶结点构成的树，则回到步骤c，否则令$T_k=T_n$</p>
+<p>​    g.采用交叉验证法在子树序列$T_0,T_1,…,T_n$中选取最优子树$T_\alpha$</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+          
+            <a href="/tags/ML/" rel="tag"># ML</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/06/统计学习方法-第一章/" rel="next" title="统计学习方法-第一章">
+                <i class="fa fa-chevron-left"></i> 统计学习方法-第一章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/10/极大似然估计的理解/" rel="prev" title="极大似然估计的理解">
+                极大似然估计的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Kathy Lau</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/kkkkathy" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树"><span class="nav-number">1.</span> <span class="nav-text">决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树模型与学习"><span class="nav-number">1.1.</span> <span class="nav-text">决策树模型与学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#决策树学习"><span class="nav-number">1.1.1.</span> <span class="nav-text">决策树学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征选择"><span class="nav-number">1.2.</span> <span class="nav-text">特征选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熵"><span class="nav-number">1.2.1.</span> <span class="nav-text">熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件熵"><span class="nav-number">1.2.2.</span> <span class="nav-text">条件熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益"><span class="nav-number">1.2.3.</span> <span class="nav-text">信息增益</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息增益比（information-gain-ratio）"><span class="nav-number">1.2.4.</span> <span class="nav-text">信息增益比（information gain ratio）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树的生成"><span class="nav-number">1.3.</span> <span class="nav-text">决策树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3算法"><span class="nav-number">1.3.1.</span> <span class="nav-text">ID3算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5生成算法"><span class="nav-number">1.3.2.</span> <span class="nav-text">C4.5生成算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#决策树的剪枝"><span class="nav-number">1.4.</span> <span class="nav-text">决策树的剪枝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CART算法"><span class="nav-number">1.5.</span> <span class="nav-text">CART算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归树的生成"><span class="nav-number">1.5.1.</span> <span class="nav-text">回归树的生成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类树的生成"><span class="nav-number">1.5.2.</span> <span class="nav-text">分类树的生成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基尼指数"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">基尼指数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CART生成算法"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">CART生成算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART剪枝"><span class="nav-number">1.5.3.</span> <span class="nav-text">CART剪枝</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CART剪枝算法"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">CART剪枝算法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kathy Lau</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

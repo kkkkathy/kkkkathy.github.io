@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="决策树,逻辑回归,">
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="http://yoursite.com/categories/index.html">
+<meta name="description" content="先举一个例子方便理解：  一个袋子中总共有黑白两种颜色100个球，其中一种颜色90个，随机取出一个球，发现是黑球。  那么我们大概率猜测90个的是黑色球，因为黑色抽中的概率最大。 极大似然估计（maximum likelihood estimation, MLE） 通俗的理解为：有n个实验结果，$A_i$到$A_n$，如果$A_j$发生了，则意味着$A_j$发生的概率最大。   抽象一点，如果事件">
+<meta name="keywords" content="决策树,逻辑回归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极大似然估计的理解">
+<meta property="og:url" content="http://yoursite.com/2018/12/10/极大似然估计的理解/index.html">
 <meta property="og:site_name" content="Kathy&#39;s Blog">
+<meta property="og:description" content="先举一个例子方便理解：  一个袋子中总共有黑白两种颜色100个球，其中一种颜色90个，随机取出一个球，发现是黑球。  那么我们大概率猜测90个的是黑色球，因为黑色抽中的概率最大。 极大似然估计（maximum likelihood estimation, MLE） 通俗的理解为：有n个实验结果，$A_i$到$A_n$，如果$A_j$发生了，则意味着$A_j$发生的概率最大。   抽象一点，如果事件">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-07T12:46:59.158Z">
+<meta property="og:updated_time" content="2018-12-10T09:16:56.459Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Categories">
+<meta name="twitter:title" content="极大似然估计的理解">
+<meta name="twitter:description" content="先举一个例子方便理解：  一个袋子中总共有黑白两种颜色100个球，其中一种颜色90个，随机取出一个球，发现是黑球。  那么我们大概率猜测90个的是黑色球，因为黑色抽中的概率最大。 极大似然估计（maximum likelihood estimation, MLE） 通俗的理解为：有n个实验结果，$A_i$到$A_n$，如果$A_j$发生了，则意味着$A_j$发生的概率最大。   抽象一点，如果事件">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/10/极大似然估计的理解/">
 
 
 
 
 
-  <title>Categories | Kathy's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>极大似然估计的理解 | Kathy's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -247,40 +251,202 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/极大似然估计的理解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kathy Lau">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kathy's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">Categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                2 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/算法原理/">算法原理</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/统计学习方法/">统计学习方法</a><span class="category-list-count">2</span></li></ul>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">极大似然估计的理解</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-10T15:52:20+08:00">
+                2018-12-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法原理/" itemprop="url" rel="index">
+                    <span itemprop="name">算法原理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>先举一个例子方便理解：</p>
+<ul>
+<li>一个袋子中总共有黑白两种颜色100个球，其中一种颜色90个，随机取出一个球，发现是黑球。</li>
+</ul>
+<p>那么我们大概率猜测90个的是黑色球，因为黑色抽中的概率最大。</p>
+<h3 id="极大似然估计（maximum-likelihood-estimation-MLE）"><a href="#极大似然估计（maximum-likelihood-estimation-MLE）" class="headerlink" title="极大似然估计（maximum likelihood estimation, MLE）"></a>极大似然估计（maximum likelihood estimation, MLE）</h3><ul>
+<li>通俗的理解为：有n个实验结果，$A_i$到$A_n$，如果$A_j$发生了，则意味着$A_j$发生的概率最大。</li>
+</ul>
+<ul>
+<li>抽象一点，如果事件发生是关于$\theta$参数的，对于样本$x_1,…,x_k$，$\hat{\theta}(x_1,…,x_k)$就是$\theta$的估计值，当$\theta=\hat{\theta}(x_1,…,x_k)$时，样本发生概率最大</li>
+</ul>
+<h4 id="当总体X为离散型"><a href="#当总体X为离散型" class="headerlink" title="当总体X为离散型"></a>当总体X为离散型</h4><ul>
+<li><p>$p(x;\theta)$表示估计参数为$\theta$时，发生$x$的概率</p>
+</li>
+<li><p>当样本值为：$x_1,…,x_n$时：<br>$$<br>L(\theta)=L(x_1,x_2,…,x_n;\theta)=\prod_{i=1}^np(x_i;\theta)<br>$$<br>其中$L(\theta)$是样本的似然函数，我们的目标就是找到一个$\hat{\theta}$使得$L(\theta)$取值最大，此时$\hat{\theta}$叫做参数$\theta$的极大似然估计值。</p>
+</li>
+</ul>
+<h4 id="当总体X为连续型"><a href="#当总体X为连续型" class="headerlink" title="当总体X为连续型"></a>当总体X为连续型</h4><ul>
+<li>概率密度函数$f(x;\theta)$代替p。</li>
+<li>解法为：<ul>
+<li>构造似然函数$L(\theta)$</li>
+<li>取对数$lnL(\theta)$</li>
+<li>求导计算极值</li>
+<li>解方程，得到$\theta$</li>
+</ul>
+</li>
+<li>使用log的好处在于：<ul>
+<li>对数函数属于单调递增函数，不会改变极值点的位置</li>
+<li>对数计算法则使得求导十分方便（比如$lna^b=blna$，以及乘法变加法等）</li>
+</ul>
+</li>
+</ul>
+<h3 id="举例——高斯分布的MLE"><a href="#举例——高斯分布的MLE" class="headerlink" title="举例——高斯分布的MLE"></a>举例——高斯分布的MLE</h3><p>高斯函数：<br>$$<br>p(x|\mu,\sigma)=\frac{1}{\sqrt{2\pi}\sigma}exp{-\frac{(x-\mu)^2}{2\sigma^2}}<br>$$<br>可以通过MLE来计算：<br>$$<br>l(\mu,\sigma)=\sum_{i=1}^Nlog(p(x_i|\mu,\sigma))\<br>=\sum_{i=0}^N{log(-\sqrt{2\pi}\sigma)-\frac{(x-\mu)^2}{2\sigma^2}}\<br>=-\frac{1}{2\sigma^2}\sum_{i=1}^N(x-\mu)^2-Nlog\sigma-\frac{N}{2}log2\pi<br>$$<br>分别对$\mu$和$\sigma$求偏导：<br>$$<br>\frac{\partial l}{\partial \mu}=\sum_{i=0}^N(x_i-\mu)=0<br>$$</p>
+<p>$$<br>\frac{\partial l}{\partial \sigma}=\frac{1}{\sigma^3}\sum_{i=0}^N(x_i-\mu)^2-\frac{N}{\sigma}=0<br>$$</p>
+<p>从而可求得$\mu$和$\sigma$的值。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/决策树/" rel="tag"># 决策树</a>
+          
+            <a href="/tags/逻辑回归/" rel="tag"># 逻辑回归</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/10/统计学习方法-第五章/" rel="next" title="统计学习方法-第五章">
+                <i class="fa fa-chevron-left"></i> 统计学习方法-第五章
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -313,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -384,6 +559,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#极大似然估计（maximum-likelihood-estimation-MLE）"><span class="nav-number">1.</span> <span class="nav-text">极大似然估计（maximum likelihood estimation, MLE）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#当总体X为离散型"><span class="nav-number">1.1.</span> <span class="nav-text">当总体X为离散型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当总体X为连续型"><span class="nav-number">1.2.</span> <span class="nav-text">当总体X为连续型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例——高斯分布的MLE"><span class="nav-number">2.</span> <span class="nav-text">举例——高斯分布的MLE</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

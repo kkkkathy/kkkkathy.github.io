@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kathy&#39;s Blog">
 <meta property="og:description" content="topic：决策树 author：Kathy Lau  决策树决策树模型与学习 决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。 决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-17T09:09:13.119Z">
+<meta property="og:updated_time" content="2018-12-17T09:15:00.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法-第五章">
 <meta name="twitter:description" content="topic：决策树 author：Kathy Lau  决策树决策树模型与学习 决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。 决策树是一个if-then规则的集合，决策树的路径具有一个重要的性质：互斥并且完备（即每一个实例都被且只被一条路径所覆盖）">
@@ -538,9 +538,7 @@ $$
 <p>​    b. 用选定的$(j,s)$对划分区域并决定相应的输出值：<br>$$<br>R_1(j,s)={x|x^{(j)}\leq s},\ \ \ R_2(j,s)={x|x^{(j)}&gt; s}<br>$$</p>
 <p>$$<br>\hat c_m=\frac{1}{N_m}\sum_{x_i\in R_m(j,s)}y_i,\ \ x\in R_m,\ \ m=1,2<br>$$</p>
 <p>​    c. 继续对两个子区域调用步骤a，b，直到满足停止条件。</p>
-<p>​    d. 将输入空间划分为M个区域$R_1,R_2,…,R_M$，生成决策树：<br>$$</p>
-<p>f(x)=\sum_{m=1}^M\hat c_mI(x\in R_m)</p>
-<p>$$</p>
+<p>​    d. 将输入空间划分为M个区域$R_1,R_2,…,R_M$，生成决策树：<br>$$<br>f(x)=\sum_{m=1}^M\hat c_mI(x\in R_m)<br>$$</p>
 <h3 id="分类树的生成"><a href="#分类树的生成" class="headerlink" title="分类树的生成"></a>分类树的生成</h3><p>分类树使用基尼指数选择最优特征，同时决定该特征的最优二值切分点。</p>
 <h4 id="基尼指数"><a href="#基尼指数" class="headerlink" title="基尼指数"></a>基尼指数</h4><p>a. 在分类问题中，假设有K个类，样本点属于第K类的概率为$p_k$，则概率分布的尼基指数定义为：<br>$$<br>Gini(p)=\sum_{k=1}^Kp_k(1-p_k)=1-\sum_{k=1}^Kp_k^2<br>$$<br>b. 对于给定的样本集合D，其基尼指数为：<br>$$<br>Gini(D)=1-\sum_{k=1}^K(\frac{|C_k|}{D})^2<br>$$<br>这里$C_k$是D中属于第k类的样本子集，K是类的个数。</p>
 <p>c. 如果样本集合D根据特征A是否取某个可能值a被分割成$D_1$和$D_2$两部分：<br>$$<br>D_1={(x,y)\in D|A(x)=a},\ \ D2=D-D_!<br>$$<br>则在特征A的条件下，集合D的基尼指数定义为：<br>$$<br>Gini(D,A)=\frac{|D1|}{|D|}Gini(D_1)+\frac{|D_2|}{|D|}Gini(D2)<br>$$<br>$Gini(D)$表示集合D的不确定性，$Gini(D,A)$表示经$A=a$分割后集合D的不确定性。</p>

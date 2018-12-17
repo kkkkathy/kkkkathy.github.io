@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Kathy&#39;s Blog">
 <meta property="og:description" content="先举一个例子方便理解：  一个袋子中总共有黑白两种颜色100个球，其中一种颜色90个，随机取出一个球，发现是黑球。  那么我们大概率猜测90个的是黑色球，因为黑色抽中的概率最大。 极大似然估计（maximum likelihood estimation, MLE） 通俗的理解为：有n个实验结果，$A_i$到$A_n$，如果$A_j$发生了，则意味着$A_j$发生的概率最大。   抽象一点，如果事件">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-17T09:28:38.747Z">
+<meta property="og:updated_time" content="2018-12-17T09:29:34.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="极大似然估计的理解">
 <meta name="twitter:description" content="先举一个例子方便理解：  一个袋子中总共有黑白两种颜色100个球，其中一种颜色90个，随机取出一个球，发现是黑球。  那么我们大概率猜测90个的是黑色球，因为黑色抽中的概率最大。 极大似然估计（maximum likelihood estimation, MLE） 通俗的理解为：有n个实验结果，$A_i$到$A_n$，如果$A_j$发生了，则意味着$A_j$发生的概率最大。   抽象一点，如果事件">
@@ -385,10 +385,8 @@
 </li>
 </ul>
 <h3 id="举例——高斯分布的MLE"><a href="#举例——高斯分布的MLE" class="headerlink" title="举例——高斯分布的MLE"></a>举例——高斯分布的MLE</h3><p>高斯函数：<br>$$<br>p(x|\mu,\sigma)=\frac{1}{\sqrt{2\pi}\sigma}exp{-\frac{(x-\mu)^2}{2\sigma^2}}<br>$$<br>可以通过MLE来计算：<br>$$<br>l(\mu,\sigma)=\sum_{i=1}^Nlog(p(x_i|\mu,\sigma))=\sum_{i=0}^N{log(-\sqrt{2\pi}\sigma)-\frac{(x-\mu)^2}{2\sigma^2}}<br>$$</p>
-<p>$$</p>
-<p>=-\frac{1}{2\sigma^2}\sum_{i=1}^N(x-\mu)^2-Nlog\sigma-\frac{N}{2}log2\pi</p>
-<p>$$</p>
-<p>分别对$\mu​$和$\sigma​$求偏导：<br>$$<br>\frac{\partial l}{\partial \mu}=\sum_{i=0}^N(x_i-\mu)=0<br>$$</p>
+<p>$$<br>=-\frac{1}{2\sigma^2}\sum_{i=1}^N(x-\mu)^2-Nlog\sigma-\frac{N}{2}log2\pi<br>$$</p>
+<p>分别对$\mu$和$\sigma$求偏导：<br>$$<br>\frac{\partial l}{\partial \mu}=\sum_{i=0}^N(x_i-\mu)=0<br>$$</p>
 <p>$$<br>\frac{\partial l}{\partial \sigma}=\frac{1}{\sigma^3}\sum_{i=0}^N(x_i-\mu)^2-\frac{N}{\sigma}=0<br>$$</p>
 <p>从而可求得$\mu$和$\sigma$的值。</p>
 

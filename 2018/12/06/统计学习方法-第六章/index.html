@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="读书笔记,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kathy&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="topic：逻辑回归 author：Kathy Lau  逻辑回归Logistics回归实际上是一种分类方法，通常用来研究一些特征$(x_1,x_2,…,x_n)$与观察结果$y$发生的概率关系。 逻辑回归自变量取值为$(-INF, +INF)$，应变量取值为$(0, 1)$，函数形式为：$$g(z)=\frac{1}{1+e^{-y}}$$ $$y=w_0+w_1x_1+…+w_nx_n$$">
+<meta name="keywords" content="读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="统计学习方法-第六章">
+<meta property="og:url" content="http://yoursite.com/2018/12/06/统计学习方法-第六章/index.html">
 <meta property="og:site_name" content="Kathy&#39;s Blog">
+<meta property="og:description" content="topic：逻辑回归 author：Kathy Lau  逻辑回归Logistics回归实际上是一种分类方法，通常用来研究一些特征$(x_1,x_2,…,x_n)$与观察结果$y$发生的概率关系。 逻辑回归自变量取值为$(-INF, +INF)$，应变量取值为$(0, 1)$，函数形式为：$$g(z)=\frac{1}{1+e^{-y}}$$ $$y=w_0+w_1x_1+…+w_nx_n$$">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-18T10:28:47.288Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kathy&#39;s Blog">
+<meta name="twitter:title" content="统计学习方法-第六章">
+<meta name="twitter:description" content="topic：逻辑回归 author：Kathy Lau  逻辑回归Logistics回归实际上是一种分类方法，通常用来研究一些特征$(x_1,x_2,…,x_n)$与观察结果$y$发生的概率关系。 逻辑回归自变量取值为$(-INF, +INF)$，应变量取值为$(0, 1)$，函数形式为：$$g(z)=\frac{1}{1+e^{-y}}$$ $$y=w_0+w_1x_1+…+w_nx_n$$">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/06/统计学习方法-第六章/">
 
 
 
 
 
-  <title>Kathy's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>统计学习方法-第六章 | Kathy's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -244,473 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/极大似然估计的理解/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kathy Lau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kathy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/10/极大似然估计的理解/" itemprop="url">极大似然估计的理解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-10T15:52:20+08:00">
-                2018-12-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法原理/" itemprop="url" rel="index">
-                    <span itemprop="name">算法原理</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          先举一个例子方便理解：
-
-一个袋子中总共有黑白两种颜色100个球，其中一种颜色90个，随机取出一个球，发现是黑球。
-
-那么我们大概率猜测90个的是黑色球，因为黑色抽中的概率最大。
-极大似然估计（maximum likelihood estimation, MLE）
-通俗的理解为：有n个实验结果，$A
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/10/极大似然估计的理解/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/统计学习方法-第五章/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kathy Lau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kathy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/10/统计学习方法-第五章/" itemprop="url">统计学习方法-第五章</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-10T15:14:57+08:00">
-                2018-12-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/统计学习方法/" itemprop="url" rel="index">
-                    <span itemprop="name">统计学习方法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-topic：决策树
-author：Kathy Lau
-
-决策树决策树模型与学习
-决策树由节点（node）和有向边（directed edge）组成，结点分为内部结点（internal node）和叶节点（leaf node）。内部结点表示一个特征或属性，叶结点表示一个类。
-决策树是一个if-the
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/10/统计学习方法-第五章/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/06/统计学习方法-第一章/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Kathy Lau">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kathy's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/06/统计学习方法-第一章/" itemprop="url">统计学习方法-第一章</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-06T19:24:25+08:00">
-                2018-12-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/统计学习方法/" itemprop="url" rel="index">
-                    <span itemprop="name">统计学习方法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-topic：统计学习方法概论
-author：Kathy Lau
-
-统计学习概述
-统计学习也称统计机器学习（statistical machine learning），即运用数据以及统计方法提高系统性能的机器学习。
-
-统计学习的总目标即考虑学习什么模型以及如何学习，在提高准确性的同时提高学习效率。
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/06/统计学习方法-第一章/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -740,9 +280,7 @@ author：Kathy Lau
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/06/统计学习方法-第六章/" itemprop="url">统计学习方法-第六章</a></h1>
+          <h1 class="post-title" itemprop="name headline">统计学习方法-第六章</h1>
         
 
         <div class="post-meta">
@@ -814,23 +352,32 @@ author：Kathy Lau
       
 
       
-        
-          
-          
-topic：逻辑回归
-author：Kathy Lau
+        <blockquote>
+<p>topic：逻辑回归</p>
+<p>author：Kathy Lau</p>
+</blockquote>
+<h2 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h2><p>Logistics回归实际上是一种分类方法，通常用来研究一些特征$(x_1,x_2,…,x_n)$与观察结果$y$发生的概率关系。</p>
+<p>逻辑回归自变量取值为$(-INF, +INF)$，应变量取值为$(0, 1)$，函数形式为：<br>$$<br>g(z)=\frac{1}{1+e^{-y}}<br>$$</p>
+<p>$$<br>y=w_0+w_1x_1+…+w_nx_n<br>$$</p>
+<p>其实$g(z)$就是我们常见的sigmoid激活函数表达形式。LR分类器的目的就是从训练数据特征中学习出一个0/1分类模型——这个模型以样本特征的线性组合作为自变量，使用logistic函数将自变量映射到(0,1)上，而LR分类器的求解就是求解这一组权值$w_0,w_1,…,w_n$。</p>
+<h2 id="二分类的逻辑回归"><a href="#二分类的逻辑回归" class="headerlink" title="二分类的逻辑回归"></a>二分类的逻辑回归</h2><p>二项逻辑回归的概率计算公式如下：<br>$$<br>P(Y=1|x)=\frac{1}{1+e^{-y}}=\frac{e^y}{1+e^y}<br>$$</p>
+<p>$$<br>P(Y=0|x)=1-P(Y=1|X)=\frac{1}{1+e^y}<br>$$</p>
+<p>因此事件发生与不发生的概率之比为：<br>$$<br>\frac{P(Y=1|x)}{P(Y=0|x)} = \frac{p}{1-p} = e^y<br>$$<br>这个比值称为事件的发生比（或者称为事件几率，the odds of experiencing an event），简记为odds。对其取对数得到对数几率（log odds）：<br>$$<br>logit(p)=log(\frac{p}{1-p})=y=w_0+w_1x_1+…+w_nx_n=w·x<br>$$<br>可以看出，之所以将这个算法命名为逻辑回归，是因为整个方法都是围绕着函数$y$来展开的。</p>
+<h2 id="模型参数计算推导"><a href="#模型参数计算推导" class="headerlink" title="模型参数计算推导"></a>模型参数计算推导</h2><p>根据二分类的计算公式，我们可以得到一个观测值的概率：<br>$$<br>P(y_i)=p_i^{y_i}(1-p_i)^{1-y_i}<br>$$<br>因为各个观测样本之间相互独立，所以他们的联合分布为各边缘分布的乘积，得到的似然函数为：<br>$$<br>L(w)=\prod_{i=1}^NP(y_i)=\prod_{i=1}^Np_i^{y_i}(1-p_i)^{1-y_i}<br>$$<br>我们的目标即求出这一似然函数的最大参数估计。为了方便计算，我们对函数取对数：<br>$$<br>lnL(w)=\sum_{i=1}^N[y_ilogp_i+(1-y_i)log(1-p_i)]<br>$$</p>
+<p>$$<br>=\sum_{i=1}^N[y_ilog(\frac{p_i}{1-p_i})+log(1-p_i)]<br>$$</p>
+<p>$$<br>=\sum_{i=1}^N[y_i(w·x_i)-log(1+e^{w·x_i})]<br>$$</p>
+<p>对其求极大值，得到$w$的估计值。这里的最优化计算通常采用方法为梯度下降法和拟牛顿法。</p>
+<h3 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h3><p>要得到$lnL(w)$的最大值，即求$J(w)=-\frac{1}{m}lnL(w)$，得到最小值，使用梯度下降算法：<br>$$<br>w_k:= w_k - \alpha\frac{\delta}{\delta{w_k}}J(w)<br>$$</p>
+<p>$$<br>\frac{\delta}{\delta{w_k}}J(w)=\frac{1}{m}\sum_{i=1}^Nx_i^{(k)}(p_i-y_i)<br>$$</p>
+<p>其中，$i$表示第$i$个统计样本，$k$表示样本第$k$个特征。</p>
+<p>该公式将一直被迭代执行，直至达到收敛（某一步减少的值少于某个很小的阈值, 则其判定收敛）或某个停止条件为止（比如迭代次数达到某个指定值或算法达到某个可以允许的误差范围）。</p>
+<h2 id="多分类的逻辑回归"><a href="#多分类的逻辑回归" class="headerlink" title="多分类的逻辑回归"></a>多分类的逻辑回归</h2><p>假设离散型随机变量$Y$的取值为${1,2,…,K}$，则多项逻辑回归模型为：<br>$$<br>P(Y=k|x)=\frac{e^{w_k.x}}{1+sum_{k=1}^{K-1}e^{w_k.x}}\ \ \ \ \ \ \ \ k=1,2,…,K-1<br>$$</p>
+<p>$$<br>P(Y=K|x)=\frac{1}{1+sum_{k=1}^{K-1}e^{w_k.x}}<br>$$</p>
+<p>Logistic回归也可以用于多分类，但是二分类的更为常用也更容易解释。所以实际中最常用的就是二分类的Logistic回归。</p>
+<p>LR分类器适用数据类型：数值型和标称型数据。</p>
+<p>优点：计算代价不高，易于理解和实现；</p>
+<p>缺点：容易欠拟合，分类精度可能不高。</p>
 
-逻辑回归Logistics回归实际上是一种分类方法，通常用来研究一些特征$(x_1,x_2,…,x_n)$与观察结果$y$发生的概率关系。
-逻辑回归自变量取值为$(-INF, +INF)$，应变量取值为$(0, 1)$，函数形式为：$$g(
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/06/统计学习方法-第六章/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -845,14 +392,36 @@ author：Kathy Lau
 
     <footer class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+          
+        </div>
       
 
       
+      
+      
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/06/统计学习方法-第一章/" rel="prev" title="统计学习方法-第一章">
+                统计学习方法-第一章 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </footer>
   </div>
@@ -862,10 +431,11 @@ author：Kathy Lau
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -873,6 +443,10 @@ author：Kathy Lau
 
 
           
+
+  
+
+
 
         </div>
         
@@ -893,8 +467,17 @@ author：Kathy Lau
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -964,6 +547,22 @@ author：Kathy Lau
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑回归"><span class="nav-number">1.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分类的逻辑回归"><span class="nav-number">2.</span> <span class="nav-text">二分类的逻辑回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型参数计算推导"><span class="nav-number">3.</span> <span class="nav-text">模型参数计算推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度下降法"><span class="nav-number">3.1.</span> <span class="nav-text">梯度下降法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多分类的逻辑回归"><span class="nav-number">4.</span> <span class="nav-text">多分类的逻辑回归</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1104,6 +703,10 @@ author：Kathy Lau
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

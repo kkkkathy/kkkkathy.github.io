@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/25/统计学习方法-第三章/knn-ex.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/25/统计学习方法-第三章/k-choice.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/25/统计学习方法-第三章/example.png">
-<meta property="og:updated_time" content="2019-01-25T13:48:08.932Z">
+<meta property="og:updated_time" content="2019-01-25T13:52:44.990Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="统计学习方法-第三章">
 <meta name="twitter:description" content="topic：k近邻（KNN） author：Kathy Lau  k近邻法KNN的思想：给定一个训练数据集，对新的输入实例，在训练数据集中找到与该实例最邻近的K个实例，根据这些最近邻的实例，得出实例输出的类别/回归值。 KNN做回归和分类的主要区别在于最后做预测时候的决策方式不同。  做分类预测时，一般是选择多数表决法，即训练集里和预测的样本特征最近的K个样本，选择k个最近邻中数量最多的类别作为">
@@ -385,10 +385,14 @@
 <p>在实际应用中，k值往往取较小的值，并选取交叉验证方法选择最优k值。</p>
 <p><img src="/2019/01/25/统计学习方法-第三章/k-choice.png" alt=""></p>
 <h3 id="距离度量"><a href="#距离度量" class="headerlink" title="距离度量"></a>距离度量</h3><p>特征空间中两个实例点的距离是两个实例点相似程度的反应，往往有以下几种：</p>
-<p><strong>$L_p$距离</strong>：$L_p(x_i,x_j)=(\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|^p)^{\frac{1}{p}}$，其中$p\geq1$</p>
-<p><strong>曼哈顿距离</strong>（p=1）：$L_1(x_i,x_j)=\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|$</p>
-<p><strong>欧氏距离</strong>（p=2）：$L_2(x_i,x_j)=(\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|^2)^{\frac{1}{2}}=\sqrt{\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|^2}$</p>
-<p>当$p=\infty$时，表示各个坐标距离的最大值：$L_{\infty}(x_i,x_j)=max_k|x_i^{(k)}-x_j^{(k)}|$</p>
+<p><strong>$L_p$距离</strong>：</p>
+<p>​    $L_p(x_i,x_j)=(\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|^p)^{\frac{1}{p}}$，其中$p\geq1$</p>
+<p><strong>曼哈顿距离</strong>（p=1）：</p>
+<p>​    $L_1(x_i,x_j)=\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|$</p>
+<p><strong>欧氏距离</strong>（p=2）：</p>
+<p>​    $L_2(x_i,x_j)=(\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|^2)^{\frac{1}{2}}=\sqrt{\sum_{k=1}^K|x_i^{(k)}-x_j^{(k)}|^2}$</p>
+<p>当$p=\infty$时，表示各个坐标距离的最大值：</p>
+<p>​    $L_{\infty}(x_i,x_j)=max_k|x_i^{(k)}-x_j^{(k)}|$</p>
 <p>常见的使用距离为欧氏距离。</p>
 <p>这里需要注意，因为这里使用距离来决定相似程度，对特征的归一化是非常重要的（身高和鞋码的例子）</p>
 <h3 id="分类规则"><a href="#分类规则" class="headerlink" title="分类规则"></a>分类规则</h3><p>多数表决规则——其实质等价于经验风险最小化。</p>

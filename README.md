@@ -1,2 +1,3 @@
-"# kkkkathy.github.io" 
-"# kkkkathy.github.io" 
+## kkkkathy.github.io
+
+#### Record learning and growth
